@@ -1,0 +1,31 @@
+{
+  "name": "express-jwt-verify",
+  "description": "middleware for express that verifies jwt token",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "nyc --all --reporter=html --reporter=text mocha --exit --reporter=spec tests/**/*.js",
+    "eslint": "./node_modules/.bin/eslint .; exit 0",
+    "posttest": "npm run eslint",
+    "scrutinizer": "nyc --all --reporter=clover mocha --reporter=spec tests/**/*.js"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.1.0"
+  },
+  "devDependencies": {
+    "body-parser": "~1.18.2",
+    "chai": "^4.1.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "eslint": "^4.13.1",
+    "eslint-plugin-react": "^7.5.1",
+    "express": "~4.15.5",
+    "mocha": "^4.0.1",
+    "mongoose": "^4.13.7",
+    "morgan": "~1.9.0",
+    "nodemon": "^1.12.7",
+    "nyc": "^11.3.0",
+    "request": "^2.83.0",
+    "serve-favicon": "~2.4.5"
+  }
+}
