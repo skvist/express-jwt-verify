@@ -1,5 +1,4 @@
 var jwt = require('jsonwebtoken');
-var jwtsecret = require('./config').jwtsecret; // config for jwtsecret
 
 /**
  * Middleware for verifying JWT tokens
@@ -11,7 +10,7 @@ var jwtsecret = require('./config').jwtsecret; // config for jwtsecret
  *
  * @return error or next()
  */
-module.exports = function(options = {}) {
+module.exports = function(secret, options = {}) {
     return (req, res, next) => {
         const token = req.body.token || req.query.token || req.headers['x-access-token'];
 
@@ -24,7 +23,7 @@ module.exports = function(options = {}) {
             });
         }
 
-        jwt.verify(token, jwtsecret, options, (err, decoded) => {
+        jwt.verify(token, secret, options, (err, decoded) => {
             if (err) {
                 return res.status(403).send({
                     success: false,

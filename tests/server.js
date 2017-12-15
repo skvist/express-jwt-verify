@@ -15,9 +15,6 @@ var app = express();
 var index = express.Router();
 var testRoutes = express.Router();
 
-var jwtsecret = require('../config').jwtsecret;
-
-
 var user = {
     username: 'doe',
     password: 'password',
@@ -40,7 +37,7 @@ index.get('/gettoken', function(req, res) {
         admin: user.admin
     };
 
-    var token = jwt.sign(payload, jwtsecret, {
+    var token = jwt.sign(payload, 'mystrongsecret', {
         expiresIn: 60*60*24 // expires in 24 hours
     });
 
@@ -54,7 +51,7 @@ index.get('/gettoken', function(req, res) {
 
 app.use('/test', testRoutes);
 
-testRoutes.use(verifyToken());
+testRoutes.use(verifyToken('mystrongsecret'));
 
 testRoutes.get('/', function(req, res) {
     res.json(req.decoded);

@@ -49,7 +49,7 @@ describe('Test open and closed routes', function () {
         });
     });
 
-    it('/test should return status 403 and JsonWebTokenError', function (done) {
+    it('/test?token=1.1.1 should return status 403 and JsonWebTokenError', function (done) {
         request.get(url + '/test?token=1.1.1', function (err, res, body) {
             expect(res.statusCode).to.equal(403);
             expect(res.body).to.deep.equal(errorJsonWebTokenError);
